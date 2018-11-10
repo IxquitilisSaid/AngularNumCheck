@@ -6,14 +6,29 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./game-control.component.css']
 })
 export class GameControlComponent implements OnInit {
-  @Output() gameState = new EventEmitter<{ gameStart: boolean, gameStop: boolean }>();
+  // Make event listenable from outside component
+  @Output() intervalFired = new EventEmitter<number>();
+  // Instanciate timer
+  interval;
+  // Showing incremental
+  lastNumber = 0;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onStateChange() {
+  // Method to "start" the game
+  onStartGame() {
+    this.interval = setInterval(() => {
+      this.intervalFired.emit(this.lastNumber + 1);
+      this.lastNumber++;
+    }, 1000);
+  }
 
+  // Method to "stop" the game
+  // Doesn't clear the timer, just stops execution
+  onStopGame() {
+    clearInterval(this.interval);
   }
 }

@@ -1,7 +1,8 @@
-<div>
-  <h2>The Game!</h2>
-  <div>
-    <button (click)="changeGameState($event)">Start Game</button>
-    <button>Stop Game</button>
-  </div>
-</div>
+<button
+  class="btn btn-success"
+  (click)="onStartGame()"
+>Start Game</button>
+<button
+  class="btn btn-danger"
+  (click)="onStopGame()"
+>Stop Game</button>
